@@ -3,8 +3,8 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch index.ts",
-    "start": "tsx index.ts"
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

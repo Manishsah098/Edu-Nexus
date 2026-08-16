@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import userRoutes from "./routes/user.ts";
 import express, {
   type Application,
   type Request,
@@ -7,8 +8,9 @@ import express, {
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import morgan from "morgan";
-import mongoose from "mongoose";
 import dns from "node:dns";
+import { connectDB } from "./db.js";
+
 dotenv.config();
 
 try {
@@ -36,6 +38,11 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
+//import user and user routes
+app.use("/api/users", userRoutes); 
+
+
+
 // global error handler middleware
 app.use((err: Error, req: Request, res: Response, next: Function) => {
   console.error(err.stack);
@@ -44,23 +51,6 @@ app.use((err: Error, req: Request, res: Response, next: Function) => {
     message: "Something went wrong!",
   });
 });
-
-// connect to db
-const connectDB = async () => {
-  try {
-    const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URL;
-    if (!mongoUri) {
-      throw new Error(
-        "MongoDB connection URI is not defined in process.env (check MONGO_URI or MONGODB_URL in .env)"
-      );
-    }
-    await mongoose.connect(mongoUri);
-    console.log("✅ MongoDB connected");
-  } catch (error) {
-    console.error("❌ MongoDB connection failed:", error);
-    process.exit(1);
-  }
-};
 
 // Connect to DB FIRST, then start listening
 connectDB().then(() => {
@@ -78,6 +68,9 @@ connectDB().then(() => {
     }
     process.exit(1);
   });
+}).catch((err) => {
+  console.error("❌ Failed to connect to DB, server not started:", err);
+  process.exit(1);
 });
 
 // Catch anything that slips through unhandled
