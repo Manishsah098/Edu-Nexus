@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import morgan from "morgan";
 import dns from "node:dns";
-import { connectDB } from "./db.js";
+import { connectDB } from "./config/db.js";
 
 dotenv.config();
 
