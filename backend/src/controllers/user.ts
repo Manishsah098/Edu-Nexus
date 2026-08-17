@@ -1,25 +1,23 @@
 import { type Request, type Response } from "express";
 import user from "../models/user.ts";
-
+import { generateToken } from "../utils/generateToken.ts";
 
 // @desc   Register a new user
-// @routhe post /api/users/register
-//@access private (Admin & Teacher)
-export const registerUser = async (req: Request, res: Response): Promise<void> => {
+// @route  POST /api/users/register
+// @access private (Admin & Teacher)
+export const register = async (req: Request, res: Response): Promise<void> => {
     try {
-        const{
-            name, email, password, role, isActive, studentClass, teacherSubject 
+        const {
+            name, email, password, role, isActive, studentClass, teacherSubject
         } = req.body;
 
-        //check if user is alreaady exists
-        const existingUser = await user.findOne({ email});
+        const existingUser = await user.findOne({ email });
 
-        if(existingUser) {
-            res.status(400).json({ message: "User already exists"});
+        if (existingUser) {
+            res.status(400).json({ message: "User already exists" });
             return;
         }
 
-        //create user
         const newUser = new user({
             name,
             email,
@@ -27,10 +25,11 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
             role,
             studentClass,
             teacherSubject,
+        });
 
-        })
+        await newUser.save();
 
-        if(newUser) {
+        if (newUser) {
             res.status(201).json({
                 _id: newUser._id,
                 name: newUser.name,
@@ -40,18 +39,35 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
                 studentClass: newUser.studentClass,
                 teacherSubject: newUser.teacherSubject,
                 message: "User created successfully"
-            })
-            
-        }else {
-            res.status (400).json({ message: "Invalid user data"});
+            });
+        } else {
+            res.status(400).json({ message: "Invalid user data" });
         }
 
     } catch (error) {
-        res.status(500).json({ message: "Server error", error });
+        console.error("Register error:", error);
+        res.status(500).json({ message: "Server error" });
     }
  };
 
+ 
+// @desc   Login user
+// @route  POST /api/users/login
+// @access public
+export const login = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { email, password } = req.body;
+        const foundUser = await user.findOne({ email }).select("+password");
 
- // @desc   Register a new user
-// @routhe post /api/users/
-//@access private (Admin & Teacher)
+        if (foundUser && (await foundUser.matchPassword(password))) {
+            generateToken(foundUser.id.toString(), res);
+            res.json(foundUser);
+        } else {
+            res.status(401).json({ message: "Invalid email or password" });
+        }
+
+   } catch (error) {
+        console.error("Login error:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+ };
