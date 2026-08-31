@@ -1,6 +1,7 @@
 import { type Request, type Response } from "express";
 import user from "../models/user.ts";
 import { generateToken } from "../utils/generateToken.ts";
+import { logActivity } from "../utils/activitieslog.ts";
 
 // @desc   Register a new user
 // @route  POST /api/users/register
@@ -30,6 +31,15 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         await newUser.save();
 
         if (newUser) {
+            if(req.user) {
+              await logActivity({
+                userId,
+                action,
+                details,
+
+              })
+
+            }
             res.status(201).json({
                 _id: newUser._id,
                 name: newUser.name,
