@@ -31,11 +31,11 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         await newUser.save();
 
         if (newUser) {
-            if(req.user) {
+            if((req as any).user) {
               await logActivity({
-                userId,
-                action,
-                details,
+                userId: (req as any).user._id,
+                action: "Registered User",
+                details: Registered user with email: ${newUser.email} and role: ${newUser.role}
 
               })
 
