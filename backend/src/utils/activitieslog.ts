@@ -1,4 +1,4 @@
-import { ActivitiesLog } from "../models/activitieslog";
+import ActivityLog from "../models/activitieslog";
 
 export const logActivity = async (
     userId: string,
@@ -6,7 +6,7 @@ export const logActivity = async (
     details: string
 ) => {
     try {
-        await ActivitiesLog.create({
+        await ActivityLog.create({
             user: userId,
             action,
             details,
