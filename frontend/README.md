@@ -1,21 +1,33 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modern React application built with **TypeScript** and **Vite**, providing a fast and efficient development environment with **Hot Module Replacement (HMR)**, **React Compiler**, and **Oxlint** for code quality and consistency.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **React** – UI development
+* **TypeScript** – Type-safe JavaScript
+* **Vite** – Fast development and build tooling
+* **React Compiler** – Automatic React optimization
+* **Oxlint** – High-performance JavaScript and TypeScript linting
 
-## React Compiler
+## ⚡ Official React Plugins
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Vite provides two official React plugins:
 
-Note: This will impact Vite dev & build performances.
+* **[@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react)** – Uses [Oxc](https://oxc.rs/) for fast React transformation.
+* **[@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react-swc)** – Uses [SWC](https://swc.rs/) for high-performance compilation.
 
-## Expanding the Oxlint configuration
+## ⚛️ React Compiler
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+The **React Compiler** is enabled by default in this template. It automatically optimizes React applications by reducing unnecessary re-renders and improving application performance.
+
+For more information, refer to the [React Compiler documentation](https://react.dev/learn/react-compiler).
+
+> **Note:** Enabling the React Compiler may increase development and production build times.
+
+## 🔍 Oxlint Configuration
+
+For production applications, it is recommended to enable **type-aware linting** by installing `oxlint-tsgolint` and updating the `.oxlintrc.json` configuration.
 
 ```json
 {
@@ -26,9 +38,59 @@ If you are developing a production application, we recommend enabling type-aware
   },
   "rules": {
     "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+    "react/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
+    ]
   }
 }
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+For a complete list of available rules and configuration options, see the [Oxlint documentation](https://oxc.rs/docs/guide/usage/linter/rules).
+
+## 📦 Getting Started
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Start the Development Server
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview the Production Build
+
+```bash
+npm run preview
+```
+
+## 📁 Project Structure
+
+```text
+src/
+├── assets/        # Static assets
+├── components/    # Reusable React components
+├── App.tsx        # Root application component
+├── main.tsx       # Application entry point
+└── ...
+```
+
+## 🛠️ Development
+
+This project is designed to provide a clean and scalable foundation for building modern React applications. TypeScript ensures type safety, Vite provides a fast development experience, and Oxlint helps maintain consistent and reliable code quality.
+
+## 📄 License
+
+This project is available for personal and educational use. Add an appropriate license if you plan to distribute or open-source the project.
