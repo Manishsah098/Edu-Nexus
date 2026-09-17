@@ -1,38 +1,67 @@
 # React + TypeScript + Vite
 
-A modern React application built with **TypeScript** and **Vite**, providing a fast and efficient development environment with **Hot Module Replacement (HMR)**, **React Compiler**, and **Oxlint** for code quality and consistency.
+A modern, scalable React application built with **TypeScript** and **Vite**, designed for a fast and efficient development experience. The project leverages **React Compiler** for automatic optimization and **Oxlint** for high-performance code quality and consistency.
 
 ## 🚀 Tech Stack
 
-* **React** – UI development
-* **TypeScript** – Type-safe JavaScript
-* **Vite** – Fast development and build tooling
-* **React Compiler** – Automatic React optimization
-* **Oxlint** – High-performance JavaScript and TypeScript linting
+| Technology         | Purpose                                                 |
+| ------------------ | ------------------------------------------------------- |
+| **React**          | Building interactive and reusable user interfaces       |
+| **TypeScript**     | Type-safe and maintainable JavaScript development       |
+| **Vite**           | Fast development server and optimized production builds |
+| **React Compiler** | Automatic React performance optimization                |
+| **Oxlint**         | Fast JavaScript and TypeScript linting                  |
 
-## ⚡ Official React Plugins
+## ✨ Key Features
+
+* ⚡ **Fast Development** with Vite and Hot Module Replacement (HMR)
+* ⚛️ **Modern React Architecture** using functional components and hooks
+* 🔷 **Type Safety** with TypeScript
+* 🚀 **Automatic Optimization** with React Compiler
+* 🔍 **Code Quality** powered by Oxlint
+* 📦 **Optimized Production Builds**
+* 🧩 **Scalable Project Structure** for future development
+
+## ⚛️ React Plugins
 
 Vite provides two official React plugins:
 
-* **[@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react)** – Uses [Oxc](https://oxc.rs/) for fast React transformation.
-* **[@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react-swc)** – Uses [SWC](https://swc.rs/) for high-performance compilation.
+### `@vitejs/plugin-react`
 
-## ⚛️ React Compiler
+Uses **Oxc** for fast React transformation and development.
 
-The **React Compiler** is enabled by default in this template. It automatically optimizes React applications by reducing unnecessary re-renders and improving application performance.
+### `@vitejs/plugin-react-swc`
 
-For more information, refer to the [React Compiler documentation](https://react.dev/learn/react-compiler).
+Uses **SWC** for high-performance compilation and transformation.
 
-> **Note:** Enabling the React Compiler may increase development and production build times.
+Choose the plugin that best fits your project's requirements.
+
+## ⚡ React Compiler
+
+The **React Compiler** is enabled in this project to automatically optimize React components and reduce unnecessary re-renders.
+
+This allows developers to focus on writing clean and maintainable React code while the compiler handles many performance optimizations automatically.
+
+> **Note:** React Compiler may increase development and production build times.
+
+Learn more about the React Compiler in the official React documentation.
 
 ## 🔍 Oxlint Configuration
 
-For production applications, it is recommended to enable **type-aware linting** by installing `oxlint-tsgolint` and updating the `.oxlintrc.json` configuration.
+Oxlint provides high-performance linting for JavaScript and TypeScript projects.
+
+For production applications, type-aware linting can be enabled with `oxlint-tsgolint`.
+
+Example configuration:
 
 ```json
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
+  "plugins": [
+    "react",
+    "typescript",
+    "oxc"
+  ],
   "options": {
     "typeAware": true
   },
@@ -48,29 +77,36 @@ For production applications, it is recommended to enable **type-aware linting** 
 }
 ```
 
-For a complete list of available rules and configuration options, see the [Oxlint documentation](https://oxc.rs/docs/guide/usage/linter/rules).
-
 ## 📦 Getting Started
 
-### Install Dependencies
+### 1. Clone the Repository
+
+```bash
+git clone <your-repository-url>
+cd <project-folder>
+```
+
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### Start the Development Server
+### 3. Start the Development Server
 
 ```bash
 npm run dev
 ```
 
-### Build for Production
+The application will start on the local development server provided by Vite.
+
+### 4. Build for Production
 
 ```bash
 npm run build
 ```
 
-### Preview the Production Build
+### 5. Preview the Production Build
 
 ```bash
 npm run preview
@@ -79,18 +115,86 @@ npm run preview
 ## 📁 Project Structure
 
 ```text
-src/
-├── assets/        # Static assets
-├── components/    # Reusable React components
-├── App.tsx        # Root application component
-├── main.tsx       # Application entry point
-└── ...
+project/
+├── public/             # Public static files
+├── src/
+│   ├── assets/         # Images, icons, and other assets
+│   ├── components/     # Reusable React components
+│   ├── App.tsx         # Root application component
+│   ├── main.tsx        # Application entry point
+│   └── ...
+├── .oxlintrc.json      # Oxlint configuration
+├── index.html          # HTML entry point
+├── package.json        # Project dependencies and scripts
+├── tsconfig.json       # TypeScript configuration
+└── vite.config.ts      # Vite configuration
 ```
 
-## 🛠️ Development
+## 🛠️ Development Guidelines
 
-This project is designed to provide a clean and scalable foundation for building modern React applications. TypeScript ensures type safety, Vite provides a fast development experience, and Oxlint helps maintain consistent and reliable code quality.
+This project follows a modern development approach focused on:
+
+* **Component-based architecture**
+* **Reusable and maintainable code**
+* **Type-safe development**
+* **Consistent code quality**
+* **Performance optimization**
+* **Scalable project organization**
+
+When adding new features, keep components modular and follow established TypeScript and React best practices.
+
+## 📜 Available Scripts
+
+| Command           | Description                  |
+| ----------------- | ---------------------------- |
+| `npm install`     | Install project dependencies |
+| `npm run dev`     | Start the development server |
+| `npm run build`   | Create a production build    |
+| `npm run preview` | Preview the production build |
+| `npm run lint`    | Run Oxlint checks            |
+
+## 🌐 Deployment
+
+The production build generated by Vite can be deployed to platforms such as:
+
+* Vercel
+* Netlify
+* GitHub Pages
+* Cloudflare Pages
+* AWS
+* Any static hosting service
+
+Build the application before deployment:
+
+```bash
+npm run build
+```
+
+The optimized production files will be generated in the `dist/` directory.
+
+## 🤝 Contributing
+
+Contributions, improvements, and suggestions are welcome.
+
+If you would like to contribute:
+
+1. Fork the repository
+2. Create a new feature branch
+3. Make your changes
+4. Test the application
+5. Commit your changes
+6. Open a Pull Request
 
 ## 📄 License
 
-This project is available for personal and educational use. Add an appropriate license if you plan to distribute or open-source the project.
+This project is intended for **personal and educational purposes**.
+
+If you plan to distribute or open-source this project, consider adding an appropriate license such as the **MIT License**.
+
+---
+
+### 👨‍💻 Author
+
+**Manish Sah**
+
+Built with ❤️ using **React, TypeScript, and Vite**
